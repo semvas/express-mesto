@@ -53,8 +53,8 @@ const updateUser = (req, res) => {
       return res.send({ data: user });
     })
     .catch((err) => {
-      if (err.name === 'CastError') {
-        return res.status(400).send({ message: 'Передан некорректный _id' });
+      if (err.name === 'CastError' || err.name === 'ValidationError') {
+        return res.status(400).send({ message: 'Передан некорректный _id или ошибка в данных' });
       }
       return res.status(500).send({ message: `Что-то пошло не так... ${err.message}` });
     });
@@ -78,8 +78,8 @@ const updateAvatar = (req, res) => {
       return res.send({ data: user });
     })
     .catch((err) => {
-      if (err.name === 'CastError') {
-        return res.status(400).send({ message: 'Передан некорректный _id' });
+      if (err.name === 'CastError' || err.name === 'ValidationError') {
+        return res.status(400).send({ message: 'Передан некорректный _id или ошибка в данных' });
       }
       return res.status(500).send({ message: `Что-то пошло не так... ${err.message}` });
     });
@@ -92,3 +92,5 @@ module.exports = {
   updateUser,
   updateAvatar,
 };
+
+// Здравствуйте, Рамиль! Спасибо!

@@ -1,7 +1,7 @@
 {
   "name": "express-mesto",
   "version": "1.0.0",
-  "description": "",
+  "description": "initial backend for the study project 'Mesto'",
   "main": "app.js",
   "scripts": {
     "lint": "npx eslint .",
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/semvas/express-mesto.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "student Ivan S",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/semvas/express-mesto/issues"
