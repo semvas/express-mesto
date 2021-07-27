@@ -4,6 +4,7 @@ const { isURL, isEmail } = require('validator');
 const validateId = celebrate({
   params: Joi.object().keys({
     id: Joi.string().hex().length(24),
+    cardId: Joi.string().hex().length(24),
   }),
 });
 
@@ -42,7 +43,7 @@ const validateUserInfo = celebrate({
 
 const validateAvatar = celebrate({
   body: Joi.object().keys({
-    navatar: Joi.string().custom((value) => {
+    avatar: Joi.string().custom((value) => {
       if (!isURL(value)) throw new CelebrateError('Некорректный URL');
       return value;
     }),

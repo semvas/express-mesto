@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 
 const User = require('../models/user');
 
@@ -43,7 +43,8 @@ const createUser = (req, res, next) => {
         throw new BadRequestError('Переданы некорректные данные при создании пользователя');
       }
       next(err);
-    });
+    })
+    .catch(next);
 };
 
 const updateUser = (req, res, next) => {
@@ -97,7 +98,7 @@ const updateAvatar = (req, res, next) => {
 const login = (req, res, next) => {
   const { email, password } = req.body;
 
-  return User.findByCredentials(email, password)
+  return User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
@@ -115,7 +116,7 @@ const login = (req, res, next) => {
 };
 
 const getUserInfo = (req, res, next) => {
-  User.findById(req.params.id)
+  User.findById(req.user._id)
     .orFail(new NotFoundError('Пользователь по указанному id не найден'))
     .then((user) => res.send(user))
     .catch((err) => {
@@ -135,5 +136,3 @@ module.exports = {
   login,
   getUserInfo,
 };
-
-// Здравствуйте, Рамиль! Спасибо!
