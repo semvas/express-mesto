@@ -68,7 +68,8 @@ const updateUser = (req, res, next) => {
         throw new BadRequestError('Неверено задано одно из полей');
       }
       next(err);
-    });
+    })
+    .catch(next);
 };
 
 const updateAvatar = (req, res, next) => {
@@ -92,7 +93,8 @@ const updateAvatar = (req, res, next) => {
         throw new BadRequestError('Ошибка в ссылке на новый аватар');
       }
       next(err);
-    });
+    })
+    .catch(next);
 };
 
 const login = (req, res, next) => {
